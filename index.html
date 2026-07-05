@@ -2,16 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>STOCKY | AI Investment Intelligence</title>
+    <title>STOCKY | Intelligence Redefined</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <style>
-        :root { --primary: #3b82f6; --bg: #0f172a; --card: #1e293b; --text: #f1f5f9; }
-        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 0; text-align: center; }
-        .hero { padding: 100px 20px; }
-        .cta-button { padding: 15px 30px; background: var(--primary); color: white; border-radius: 8px; text-decoration: none; font-weight: bold; display: inline-block; }
-        .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; padding: 50px; max-width: 1000px; margin: auto; }
-        .card { background: var(--card); padding: 20px; border-radius: 10px; opacity: 0; }
+        :root { --glass: rgba(255, 255, 255, 0.05); --primary: #3b82f6; }
+        body { background: #050505; color: #e2e8f0; font-family: 'Segoe UI', sans-serif; margin: 0; display: flex; flex-direction: column; align-items: center; }
+        
+        .hero { padding: 80px 20px; text-align: center; }
+        .cta { padding: 20px 40px; background: var(--primary); color: white; border: none; border-radius: 50px; font-weight: bold; cursor: pointer; text-decoration: none; }
+        
+        /* Vertical Grid */
+        .features-grid { width: 90%; max-width: 800px; display: grid; grid-template-columns: 1fr; gap: 30px; padding-bottom: 100px; }
+        
+        .card { background: var(--glass); backdrop-filter: blur(10px); padding: 40px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); }
+        .card h2 { color: var(--primary); margin-top: 0; }
     </style>
 </head>
 <body>
@@ -19,29 +23,35 @@
     <div class="hero">
         <h1>STOCKY</h1>
         <p>Your AI-powered companion for smarter retail investing.</p>
-        <br>
-        <a href="YOUR_RENDER_URL_HERE" class="cta-button">Launch Dashboard</a>
+        <a href="YOUR_RENDER_URL_HERE" class="cta">Launch Dashboard</a>
     </div>
 
-    <div class="features" id="features"></div>
+    <div class="features-grid" id="features"></div>
 
     <script>
-        const features = ["Live Stock Data", "Interactive Charts", "AI Stock Prediction", "News Insights", "AI Chatbot", "AI Fallback", "Trend Analysis", "Retail Focus"];
+        const details = [
+            { h: "Live Stock Data", p: "Access real-time, low-latency market feeds. Search by ticker or company name to view current pricing, volume, and comprehensive market metrics." },
+            { h: "Interactive Charts", p: "Visualize historical price performance with our custom charting engine. Identify trends, support levels, and resistance patterns at a glance." },
+            { h: "AI Stock Prediction", p: "Leverage advanced machine learning models to estimate future market movements based on historical data patterns and technical indicators." },
+            { h: "AI News & Insights", p: "Our AI scrapes and synthesizes global financial news, providing an 'impact score' to help you understand how headlines move the needle." },
+            { h: "AI Chatbot", p: "A dedicated financial assistant trained to explain complex terms, analyze market concepts, and provide context for your investment decisions." },
+            { h: "AI Fallback System", p: "Reliability is key. Our redundant AI core ensures that even if one service is down, your analysis continues without interruption." },
+            { h: "Market Trend Analysis", p: "Deep analysis of bull/bear market conditions to help you make informed, long-term strategic decisions." },
+            { h: "Retail Investor Focus", p: "Designed specifically for individual needs: create personalized watchlists, set custom alerts, and track your specific portfolio performance." }
+        ];
+
         const container = document.getElementById('features');
-        
-        // Dynamically create cards
-        features.forEach(f => {
-            container.innerHTML += `<div class="card"><h3>${f}</h3></div>`;
+        details.forEach(d => {
+            container.innerHTML += `<div class="card"><h2>${d.h}</h2><p>${d.p}</p></div>`;
         });
 
-        // Anime.js Entrance Animation
+        // Animation
         anime({
             targets: '.card',
-            translateY: [50, 0],
             opacity: [0, 1],
-            delay: anime.stagger(100),
-            duration: 1000,
-            easing: 'easeOutQuad'
+            translateY: [40, 0],
+            delay: anime.stagger(150),
+            easing: 'easeOutElastic(1, .5)'
         });
     </script>
 </body>
